@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include <glut.h>
 #include <cmath>
 
@@ -37,15 +39,24 @@ inline double rgb(int old);
 
 int main (int argc, char **argv)
 {
+	int flag = 0;
     glutInit(&argc, argv); 
     glutInitWindowSize(500,300);
-    glutCreateWindow("Solid Sphere");
-    xRotated = yRotated = zRotated = 30.0;
+    glutCreateWindow("Flags");
+    /*xRotated = yRotated = zRotated = 30.0;
     xRotated=43;
-    yRotated=50;
-	Initialize();
-    glutDisplayFunc(display);
-    glutReshapeFunc(reshape);
+    yRotated=50;*/
+	std::cout<<"Choose your flag! [1 | 2 | 3] ";
+	std::cin>>flag;
+	if(flag == 1) {
+		Initialize();
+		glutDisplayFunc(display);
+		glutReshapeFunc(reshape);
+	} else if(flag == 2) {
+
+	} else if(flag == 3) {
+
+	}
     glutMainLoop();
     return 0;
 }
