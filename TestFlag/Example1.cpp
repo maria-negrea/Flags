@@ -37,6 +37,28 @@ void reshape(int x, int y);
 void Initialize();
 inline double rgb(int old);
 
+void init2()                                                              
+{
+    glClearColor (0.0, 0.0, 0.0, 0.0);
+    glShadeModel (GL_FLAT);
+}
+
+void display2()                    
+{
+    glClear (GL_COLOR_BUFFER_BIT);
+    glColor3f (1.0, 1.0, 1.0);
+	glTranslatef(0.0, 0.0 , -6.8);
+    glBegin(GL_LINE_STRIP);
+        glVertex3f(0.4, 0.1, 0.0); 
+		glVertex3f(0.39, 0.2, 0.0);
+		glVertex3f(0.38, 0.2, 0.0);
+		glVertex3f(0.37, 0.2, 0.0);//f means floating point or those with decimals
+        glVertex3f(0.2, 0.2, 0.0);
+        glVertex3f(0.3, 0.5, 0.0);
+    glEnd();
+    glFlush ();      //forces previously issued commands to execute
+}
+
 int main (int argc, char **argv)
 {
 	int flag = 0;
@@ -53,7 +75,9 @@ int main (int argc, char **argv)
 		glutDisplayFunc(display);
 		glutReshapeFunc(reshape);
 	} else if(flag == 2) {
-
+		init2();
+		glutDisplayFunc(display2);
+		glutReshapeFunc(reshape);
 	} else if(flag == 3) {
 
 	}
