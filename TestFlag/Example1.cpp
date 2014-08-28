@@ -1,10 +1,15 @@
 #include <iostream>
-
+#include "Point2D.h"
+#include <vector>
 #include <glut.h>
 #include <cmath>
 
+using namespace std;
+
 GLfloat xRotated, yRotated, zRotated;
 GLdouble radius=0.8;
+
+vector<Point2D> vec1, vec2;
 
 
 void DrawStar(float fX, float fY) {
@@ -39,7 +44,7 @@ inline double rgb(int old);
 
 void init2()                                                              
 {
-    glClearColor (0.0, 0.0, 0.0, 0.0);
+    glClearColor (rgb(255), rgb (0), rgb(0), rgb(0));
     glShadeModel (GL_FLAT);
 }
 
@@ -48,15 +53,54 @@ void display2()
     glClear (GL_COLOR_BUFFER_BIT);
     glColor3f (1.0, 1.0, 1.0);
 	glTranslatef(0.0, 0.0 , -6.8);
+    glutSolidSphere(0.05,500, 500); 
+    glFlush();
+
+	double  PI = 3.141592654;
+	glRotatef(100, 0.0, 0.0, -6.8);	
+	//glTranslatef(-1.02, -0.45, 0.0);
+	
     glBegin(GL_LINE_STRIP);
-        glVertex3f(0.4, 0.1, 0.0); 
-		glVertex3f(0.39, 0.2, 0.0);
-		glVertex3f(0.38, 0.2, 0.0);
-		glVertex3f(0.37, 0.2, 0.0);//f means floating point or those with decimals
-        glVertex3f(0.2, 0.2, 0.0);
-        glVertex3f(0.3, 0.5, 0.0);
+		int count = 0;
+		for(double i =-1; i < 1;i+=0.1){
+			Point2D temp(i-1.02, 0.65*i*i+0.1*i-0.3-0.45);
+			glVertex3f(temp.x, temp.y, 0.0);
+			vec1.push_back(temp);
+			count++;
+		}
+	std::cout<<"Count1: "<<count<<std::endl;
     glEnd();
+
+	glRotatef(-4.9, 0.0, 0.0, -6.8);
+	//glTranslatef(0.01, 0.68, 0.0);
+	glColor3f (1.0, 1.0, 1.0);
+	
+	glBegin(GL_LINE_STRIP);
+		count = 0;
+		for(double i = -1; i < 1; i+=0.1){
+			Point2D temp(i-1.0, cos(PI*i)/3+0.32);
+			glVertex3f(temp.x, temp.y, 0.0);
+			count++;
+			vec2.push_back(temp);
+		}
+		std::cout<<"Count2: "<<count<<std::endl;
+    glEnd();
+
+	glBegin(GL_QUADS);
+		for(int i=0; i < vec1.size()-1; i+=1) {
+			glVertex3f(vec1[i].x, vec1[i].y, 0.0);
+			glVertex3f(vec1[i+1].x, vec1[i+1].y, 0.0);
+			glVertex3f(vec2[i+1].x, vec2[i+1].y, 0.0);
+			glVertex3f(vec2[i].x, vec2[i].y, 0.0);
+			
+		}
+	glEnd();
+
     glFlush ();      //forces previously issued commands to execute
+}
+
+void display3()
+{
 }
 
 int main (int argc, char **argv)
@@ -70,17 +114,31 @@ int main (int argc, char **argv)
     yRotated=50;*/
 	std::cout<<"Choose your flag! [1 | 2 | 3] ";
 	std::cin>>flag;
-	if(flag == 1) {
-		Initialize();
-		glutDisplayFunc(display);
-		glutReshapeFunc(reshape);
-	} else if(flag == 2) {
-		init2();
-		glutDisplayFunc(display2);
-		glutReshapeFunc(reshape);
-	} else if(flag == 3) {
-
+	switch(flag)
+	{
+	case 1:
+		{
+			Initialize();
+			glutDisplayFunc(display);
+			glutReshapeFunc(reshape);
+			break;
+		}
+	case 2:
+		{
+			init2();
+			glutDisplayFunc(display2);
+			glutReshapeFunc(reshape);
+			break;
+		}
+	case 3:
+		{
+			Initialize();
+			glutDisplayFunc(display3);
+			glutReshapeFunc(reshape);
+			break;
+		}
 	}
+
     glutMainLoop();
     return 0;
 }
