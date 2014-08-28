@@ -179,10 +179,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Point2D.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\Star.cpp"
 				>
 			</File>
