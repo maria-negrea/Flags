@@ -39,14 +39,9 @@ void DrawStar(float fX, float fY) {
 
 void display(void);
 void reshape(int x, int y);
-void Initialize();
+void Initialize(int width, int height);
 inline double rgb(int old);
 
-void init2()                                                              
-{
-    glClearColor (rgb(255), rgb (0), rgb(0), rgb(0));
-    glShadeModel (GL_FLAT);
-}
 
 void display2()                    
 {
@@ -101,6 +96,26 @@ void display2()
 
 void display3()
 {
+	glClear (GL_COLOR_BUFFER_BIT);
+    glColor3f (1.0, 1.0, 1.0);
+	glPushMatrix();
+	glTranslatef(0.0, 0.0 , -6.8);
+	
+	glBegin(GL_QUADS);
+		glVertex3f(-0.565, 1.7, 0.0);
+		glVertex3f(0.565, 1.7, 0.0);
+		glVertex3f(0.565, -1.7, 0.0);
+		glVertex3f(-0.565, -1.7, 0.0);
+	glEnd();
+
+	glBegin(GL_QUADS);
+		glVertex3f(-1.7, 0.565, 0.0);
+		glVertex3f(1.7, 0.565, 0.0);
+		glVertex3f(1.7, -0.565, 0.0);
+		glVertex3f(-1.7, -0.565, 0.0);
+	glEnd();
+	glPopMatrix();
+	glFlush (); 
 }
 
 int main (int argc, char **argv)
@@ -118,21 +133,21 @@ int main (int argc, char **argv)
 	{
 	case 1:
 		{
-			Initialize();
+			Initialize(500, 300);
 			glutDisplayFunc(display);
 			glutReshapeFunc(reshape);
 			break;
 		}
 	case 2:
 		{
-			init2();
+			Initialize(500, 300);
 			glutDisplayFunc(display2);
 			glutReshapeFunc(reshape);
 			break;
 		}
 	case 3:
 		{
-			Initialize();
+			Initialize(500, 300);
 			glutDisplayFunc(display3);
 			glutReshapeFunc(reshape);
 			break;
@@ -143,8 +158,9 @@ int main (int argc, char **argv)
     return 0;
 }
 
-void Initialize() {
-	glClearColor(rgb(255), rgb(0), rgb(0), rgb(0));
+void Initialize(int width, int height) {
+	glutInitWindowSize(width, height);
+	glClearColor(rgb(223), rgb(13), rgb(14), rgb(0));
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
@@ -166,7 +182,7 @@ void display(void)
     glFlush();
 
 	glTranslatef(0.0-0.1,0.0,-5.0);
-    glColor3f(rgb(255), rgb(0), rgb(0));
+    glColor3f(rgb(223), rgb(13), rgb(14));
     glutSolidSphere(1.3,500, 500); 
     glFlush();
 	
@@ -187,6 +203,6 @@ void reshape(int x, int y)
     gluPerspective(39.0,(GLdouble)x/(GLdouble)y,0.6,21.0);
     glMatrixMode(GL_MODELVIEW);
     glViewport(0,0,x,y);  //Use the whole window for rendering
+	//glTranslatef(0.0, 0.0 , 6.8);
 } 
 
-//FLAGS: http://www.photius.com/flags/alphabetic_list.html, Panama, Switzerland, Israel, etc
