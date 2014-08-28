@@ -12,12 +12,12 @@ GLdouble radius=0.8;
 vector<Point2D> vec1, vec2;
 
 
-void DrawStar(float fX, float fY) {
+void DrawStar(float fX, float fY, float bigRadius, float smallRadius) {
 	const float kfPi = 3.1415926535897932384626433832795;
 	// Draw ten triangles
 	//set the radius and the inner radius
-	const float kfRadius = 0.5;//0.0616/2.0;
-	const float kfInnerRadius = 0.2;//kfRadius*(1.0/(sin((2.0*kfPi)/5.0)*2.0*cos(kfPi/10.0) + sin((3.0*kfPi)/10.0)));
+	const float kfRadius = bigRadius; //0.5;//0.0616/2.0;
+	const float kfInnerRadius = smallRadius; //0.2;//kfRadius*(1.0/(sin((2.0*kfPi)/5.0)*2.0*cos(kfPi/10.0) + sin((3.0*kfPi)/10.0)));
 	const float stpConst = 1.0;
 	//set the color
 	//glColor3f(1.0, 1.0, 0.0);
@@ -46,7 +46,7 @@ inline double rgb(int old);
 void display2()                    
 {
     glClear (GL_COLOR_BUFFER_BIT);
-    glColor3f (1.0, 1.0, 1.0);
+    glColor3f (rgb(255), rgb(0), rgb(0));
 	glTranslatef(0.0, 0.0 , -6.8);
     glutSolidSphere(0.05,500, 500); 
     glFlush();
@@ -73,7 +73,7 @@ void display2()
 	glBegin(GL_LINE_STRIP);
 		count = 0;
 		for(double i = -1; i < 1; i+=0.1){
-			Point2D temp(i-1.0, cos(PI*i)/3+0.32);
+			Point2D temp(i-0.75, cos(PI*i)/3+0.32);
 			glVertex3f(temp.x, temp.y, 0.0);
 			count++;
 			vec2.push_back(temp);
@@ -90,6 +90,21 @@ void display2()
 			
 		}
 	glEnd();
+	glRotatef(-10, 0.0, 0.0, -6.8);
+	glColor3f (rgb(255), rgb(0), rgb(0));
+    glBegin(GL_LINE_STRIP);
+		for(double i =-0.6; i < 0.6;i+=0.1){
+			glLineWidth(10.0);
+			Point2D temp(i-0.48, 0.65*i*i+0.1*i-0.2);
+			glVertex3f(temp.x, temp.y, 0.0);
+		}
+    glEnd();
+
+	glTranslatef(1.2,0.0,2.8);
+	glRotatef(20, 1.2, 0.0, 2.8);
+	glColor3f(rgb(255), rgb(255), rgb(255));
+	DrawStar(0.0, 0.0, 0.5, 0.2);
+	glFlush();
 
     glFlush ();      //forces previously issued commands to execute
 }
@@ -189,7 +204,7 @@ void display(void)
 	glTranslatef(1.2,0.0,2.8);
 	glRotatef(20, 1.2, 0.0, 2.8);
 	glColor3f(rgb(255), rgb(255), rgb(255));
-	DrawStar(0.0, 0.0);
+	DrawStar(0.0, 0.0, 0.5, 0.2);
 	glFlush();
     // sawp buffers called because we are using double buffering 
    // glutSwapBuffers();
