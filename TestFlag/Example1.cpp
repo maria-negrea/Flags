@@ -73,7 +73,7 @@ void display2()
 	glBegin(GL_LINE_STRIP);
 		count = 0;
 		for(double i = -1; i < 1; i+=0.1){
-			Point2D temp(i-1, cos(PI*i)/3+0.32);
+			Point2D temp(i-0.7, cos(PI*i)/3+0.32);
 			glVertex3f(temp.x, temp.y, 0.0);
 			count++;
 			vec2.push_back(temp);
@@ -90,17 +90,18 @@ void display2()
 			
 		}
 	glEnd();
+	
 	glRotatef(0, 0.0, 0.0, -6.8);
 	glColor3f (rgb(223), rgb(13), rgb(14));
     glBegin(GL_LINE_STRIP);
 		for(double i =-0.6; i < 0.6;i+=0.1){
-			glLineWidth(10.0);
-			Point2D temp(i-0.33, 0.65*i*i+0.1*i-0.12);
+			glLineWidth(100.0);
+			Point2D temp(i-0.065, 0.45*i*i+0.1*i-0.08);
 			glVertex3f(temp.x, temp.y, 0.0);
 		}
     glEnd();
 
-	glTranslatef(-0.6,0.05,2.8);
+	glTranslatef(-0.5,0.05,2.8);
 	/*glRotatef(20, 1.2, 0.0, 2.8);*/
 	glColor3f(rgb(223), rgb(13), rgb(14));
 	DrawStar(0.0, 0.0, 0.1, 0.05);
