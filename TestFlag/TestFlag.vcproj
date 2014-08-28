@@ -171,11 +171,27 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\Example1.cpp"
+				RelativePath=".\HongKong.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\main.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\Point2D.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Star.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Switzerland.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Turkey.cpp"
 				>
 			</File>
 		</Filter>
@@ -185,7 +201,23 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath=".\HongKong.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Point2D.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Star.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Switzerland.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Turkey.h"
 				>
 			</File>
 		</Filter>
