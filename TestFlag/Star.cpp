@@ -1,5 +1,9 @@
 #include "Star.h"
-#include <glut.h>
+#ifdef __unix || __unix__
+	#include <GL/glut.h>
+#else
+	#include <glut.h>
+#endif
 #include <math.h>
 
 /*

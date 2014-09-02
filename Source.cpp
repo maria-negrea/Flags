@@ -1,6 +1,10 @@
 #include "vector"
 #include "math.h"
-#include <glut.h>
+#ifdef __unix || __unix__
+	#include <GL/glut.h>
+#else
+	#include <glut.h>
+#endif
 
 struct Point2D{
 	double x;
